@@ -1,0 +1,73 @@
+body
+{
+  background-color: #CCCCCC;
+}
+
+
+#main_container
+{
+  width: 980px;
+  min-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#footer
+{
+  border-color: #000000;
+  border-width: 1px;
+  border-style: solid;
+}
+
+#page_content
+{
+  padding: 5px;
+  width: 710px;
+}
+
+#header
+{
+  width: 720px;
+}
+
+#header, #page_content, #footer
+{
+  margin-left: 260px;
+  background-color: #FFFFFF;
+}
+
+#left_div
+{
+  float: left;
+}
+
+#main_menu
+{
+  width: 250px;
+  /*white-space: nowrap;*/
+}
+
+#footer
+{
+  background-color: #FFFFFF;
+  clear: both;
+  text-align: center;
+  min-height: 40px;
+}
+
+#main_menu a
+{
+  background-color: #8CCCCA;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#main_menu ul
+{
+  list-style-type: none;
+}
+
+.schedule_icon
+{
+	height: 20px;
+}
