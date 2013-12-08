@@ -50,7 +50,7 @@ class SiteMenu extends Menu
 
 class Site
 {
-  private static $prefix = "/project/";
+  private static $prefix = "/trunk/";
   private static $menu;
   static function init(){
   
