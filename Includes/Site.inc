@@ -57,8 +57,8 @@ class Site
 	//Menu->addItem(new MenuItem("name", url, subMenu, newTab, id);
     
 	$customerSubMenu = new SiteMenu();
-//	$customerSubMenu->addItem("Reservations", SITEURL_FIX_LATER, "", false, null);
-//	$customerSubMenu->addItem("Review/Edit", SITEURL_FIX_LATER, "", false, null);
+	//$customerSubMenu->addItem("Reservations", "customers.php");
+	//$customerSubMenu->addItem("Review/Edit", "customers.php");
 	
 	$employeeSubMenu = new SiteMenu();
 //	$employeeSubMenu->addItem("Assigned jobs", SITEURL_FIX_LATER, "", false, null);
@@ -69,26 +69,13 @@ class Site
 	
     $mainMenu = new SiteMenu();
     $mainMenu->addItem(new MenuItem("Home", "index.php"));
-	$mainMenu->addItem(new MenuItem("Customers", "", "", false, $customerSubMenu));
-	$mainMenu->addItem(new MenuItem("Employees", "", "", false, $employeeSubMenu));
-	$mainMenu->addItem(new MenuItem("Airports", "", "", false, $airportSubMenu));
-	$mainMenu->addItem(new MenuItem("Userguide"));       
+	$mainMenu->addItem(new MenuItem("Customers", "customers.php", "", false, $customerSubMenu));
+	$mainMenu->addItem(new MenuItem("Employees", "index.php", "", false, $employeeSubMenu));
+	$mainMenu->addItem(new MenuItem("Airports", "index.php", "", false, $airportSubMenu));
+	$mainMenu->addItem(new MenuItem("Userguide", "index.php"));       
     self::$menu = $mainMenu;
 	
-	$dbHost = "141.238.32.126";
-	$dbHostPort="1521";
-	$dbServiceName = "xe";
-	$usr = "fefes";
-	$pswd = "password";
-	$dbConnStr = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)
-				(HOST=".$dbHost.")(PORT=".$dbHostPort."))
-				(CONNECT_DATA=(SERVICE_NAME=".$dbServiceName.")))";
-
-
-	if(!$dbConn = oci_connect($usr,$pswd,$dbConnStr)){
-	$err = oci_error();
-	trigger_error('Could not establish a connection');
-	};
+	
   }
   
   public static function getPrefix()
