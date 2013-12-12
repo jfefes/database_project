@@ -19,6 +19,7 @@ $dbConnStr = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)
 //$limit = 3;			
 			
 $conn = oci_connect($usr, $pswd, $dbConnStr);
+
 if (!$conn) {
    $m = oci_error();
    echo $m['message'], "\n";

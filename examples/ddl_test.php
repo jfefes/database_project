@@ -35,7 +35,7 @@ $name = 'J';
 $id = 'J1027';
 $roomNo = '013';
 
-//$sql='insert into branch(NAME, ID, ROOM) values(:name, :id, :roomNo)';
+$sql='insert into branch(NAME, ID, ROOM) values(:name, :id, :roomNo)';
 $stmt = oci_parse($conn, $sql);
 
 oci_bind_by_name($stmt, ":name", $name);
@@ -43,9 +43,9 @@ oci_bind_by_name($stmt, ":id", $id);
 oci_bind_by_name($stmt, ":roomNo", $roomNo);
 
 
-if(oci_execute($stmt)) {
-	echo 'success';
-}
+//if(oci_execute($stmt)) {
+//	echo 'success';
+//}
 
 oci_free_statement($stmt);
 

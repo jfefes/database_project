@@ -3,6 +3,7 @@ require_once("Page.inc");
 require_once("Menu.inc");
 require_once("MenuItem.inc");
 require_once("Site.inc");
+
 if(!isset($page))
 {
   $page = new Page();
@@ -38,8 +39,8 @@ $page->addedPHPHeader();
 ?>
           </div>
           <div id="footer" class="ui-corner-bottom">
-            <p style='text-align: center'>2013 CSIT 445: Airline Service Simulator <br/>
-			By James Fefes, Eugene Nicks, Andrew Morrison, Andrew Hotchkiss</p>
+            <p style='text-align: center'>James Fefes, Andrew Morrison, Andrew Hotchkiss, Eugene Nicks<br/>
+			SUNY Fredonia CSIT 455, Fall 2013</p>
           </div>
         </div>
         <script src="<?php echo Site::getPrefix(); ?>layout/jquery-1.10.1.min.js"></script>

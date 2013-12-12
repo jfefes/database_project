@@ -1,12 +1,12 @@
 <?php
-require_once("/Includes/Page.inc");
-require_once("/Includes/Site.inc");
+require_once("../Includes/Page.inc");
+require_once("../Includes/Site.inc");
 
 class CurrentPage extends Page
 {
   public function __construct()
   {
-    parent::setTitle("Home");
+    parent::setTitle("Add Employee(s)");
   }
   
   public function addedHTMLHeader()
@@ -17,10 +17,10 @@ class CurrentPage extends Page
   {
 ?>
 <div style='text-align: center;'>
-	<h1> CSIT 455 Project</h1>
+	<h1>Add Employee(s)</h1>
 	
 	<p style='text-align: center;'>
-		Hover over a menu item to show their sub-menu. <br/>
+		Add new employee(s) here.		 
 	</p>
 </div>
 
@@ -37,5 +37,5 @@ class CurrentPage extends Page
 
 $page = new CurrentPage();
 
-require_once("/Includes/template.tpl");
+require_once("../Includes/template.tpl");
 ?>
