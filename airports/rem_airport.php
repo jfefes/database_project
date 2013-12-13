@@ -6,7 +6,7 @@ class CurrentPage extends Page
 {
   public function __construct()
   {
-    parent::setTitle("Add Airport(s)");
+    parent::setTitle("Remove Airport");
   }
   
   public function addedHTMLHeader()
@@ -17,18 +17,15 @@ class CurrentPage extends Page
   {
 ?>
 <div style='text-align: center;'>
-	<h1>Add Airport(s)</h1>
-	
-	<p style='text-align: center;'>
-		<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-			City location: <input type="text" name="city"> <br/>
-			State (2 letter abbreviation): <input type="text" name="state"> <br/>
-			Airport id: <input type="text" name="airport_id"><br>
-			<input type="submit" value="Submit">
+	<h1>Remove an airport</h1>
+	<p style='text-align: center;'>	
+	<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+			Remove an airport by entering the port id: <input type="text" name="remove_airport"><br>
+			<input type="submit" value="Delete">
 		</form>
 		<br/>
 		<?php
-		if (isset($_POST["city"]) && isset($_POST["state"])&& isset($_POST["airport_id"])){
+		if (isset($_POST["remove_airport"]) && !$_POST["remove_airport"]==null){
 			$dbHost = "141.238.32.126";
 			$dbHostPort="1521";
 			$dbServiceName = "xe";
@@ -44,34 +41,39 @@ class CurrentPage extends Page
 				trigger_error('Could not establish a connection to Oracle');
 			}
 
-			$city = $_POST["city"];
-			$state = $_POST["state"];
-			$port_ID = $_POST["airport_id"];
-
-			$sql='insert into airports(PID, LOC_CITY, LOC_STATE) values(:PID, :CITY, :STATE)';
+			$port_ID = $_POST["remove_airport"];
+			$port_ID = "PID='$port_ID'";
+			
+			
+			$sql="select * from airports where $port_ID";
 			$stmt = oci_parse($conn, $sql);
-
-			oci_bind_by_name($stmt, ":STATE", $state);
-			oci_bind_by_name($stmt, ":CITY", $city);
-			oci_bind_by_name($stmt, ":PID", $port_ID);
-
-			if(oci_execute($stmt)) {
-				echo "Airport added: <br/>
-				in $city, $state : with PID $port_ID";
+			
+			oci_define_by_name($stmt, 'PID', $pid);
+			oci_define_by_name($stmt, 'LOC_CITY', $city);
+			oci_define_by_name($stmt, 'LOC_STATE', $state);
+			oci_execute($stmt);
+			
+			
+			if(oci_fetch($stmt)) {
+				echo "Airport removed: <br/>
+				Port ID $pid: located in $city, $state.";
 			}
+			$sql="delete from airports where $port_ID";
+			$stmt = oci_parse($conn, $sql);
+			oci_execute($stmt, OCI_COMMIT_ON_SUCCESS);
 		}
-		?>
-	</p>
+		?>	 
+	
+	
 </div>
-
 
 
 <?php
 	if(isset($conn) && isset($stmt) && !$stmt==null){
 		oci_free_statement($stmt);
 		oci_close($conn);
-	}  
-  }
+	}
+}
   
   public function pageEnd()
   {

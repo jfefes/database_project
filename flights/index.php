@@ -1,12 +1,12 @@
 <?php
-require_once("/Includes/Page.inc");
-require_once("/Includes/Site.inc");
+require_once("../Includes/Page.inc");
+require_once("../Includes/Site.inc");
 
 class CurrentPage extends Page
 {
   public function __construct()
   {
-    parent::setTitle("Home");
+    parent::setTitle("Flights");
   }
   
   public function addedHTMLHeader()
@@ -16,10 +16,12 @@ class CurrentPage extends Page
   public function pageContent($printerFriendly)
   {
 ?>
-
-
 <div style='text-align: center;'>
-	Text goes here. This page is designed to be a starting place for new pages, and not part of the final product.
+	<h1>Flights</h1>
+	
+	<p style='text-align: center;'>
+		Please use Flight options located within the sub-menu. 		 
+	</p>
 </div>
 
 
@@ -35,5 +37,5 @@ class CurrentPage extends Page
 
 $page = new CurrentPage();
 
-require_once("/Includes/template.tpl");
+require_once("../Includes/template.tpl");
 ?>

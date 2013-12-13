@@ -55,31 +55,36 @@ class Site
   static function init(){
       
 	$customerSubMenu = new SiteMenu();
-	$customerSubMenu->addItem( new MenuItem("New customer", Site::getPrefixWithoutSlash() . "/customer/new_cust.php", "", false));
-	$customerSubMenu->addItem( new MenuItem("Reserve flight", Site::getPrefixWithoutSlash() . "/customer/reserve.php", "", false));
+	$customerSubMenu->addItem( new MenuItem("Search customers", Site::getPrefixWithoutSlash() . "/customer/search_cust.php", "", true));
+	$customerSubMenu->addItem( new MenuItem("Add new customer", Site::getPrefixWithoutSlash() . "/customer/add_cust.php", "", false));
+	$customerSubMenu->addItem( new MenuItem("Remove customer", Site::getPrefixWithoutSlash() . "/customer/rem_cust.php", "", false));
+	$customerSubMenu->addItem( new MenuItem("Assign a flight", Site::getPrefixWithoutSlash() . "/customer/assign_cust.php", "", false));
 		
 	$employeeSubMenu = new SiteMenu();
+	$employeeSubMenu->addItem( new MenuItem("Search employees", Site::getPrefixWithoutSlash() . "/employees/search_employee.php", "", true));
 	$employeeSubMenu->addItem( new MenuItem("Add new employee", Site::getPrefixWithoutSlash() . "/employees/add_employee.php", "", false));
-
-
-	$examplesSubMenu = new SiteMenu();
-	$examplesSubMenu->addItem( new MenuItem("Ex. 1", Site::getPrefixWithoutSlash() . "/examples/serv_test.php", "", false));
-	$examplesSubMenu->addItem( new MenuItem("Ex. 2", Site::getPrefixWithoutSlash() . "/examples/serv_test2.php", "", false));
-	
+	$employeeSubMenu->addItem( new MenuItem("Remove employee", Site::getPrefixWithoutSlash() . "/employees/rem_employee.php", "", false));
+	$employeeSubMenu->addItem( new MenuItem("Assign a job", Site::getPrefixWithoutSlash() . "/employees/assign_employee.php", "", false));
 	
 	$airportSubMenu = new SiteMenu();
+	$airportSubMenu->addItem( new MenuItem("Search airports", Site::getPrefixWithoutSlash() . "/airports/search_airport.php", "", true));
 	$airportSubMenu->addItem( new MenuItem("Add new airport", Site::getPrefixWithoutSlash() . "/airports/add_airport.php", "", false));
-	$airportSubMenu->addItem( new MenuItem("View airport", Site::getPrefixWithoutSlash() . "/airports/view_airport.php", "", false));
+	$airportSubMenu->addItem( new MenuItem("Remove airport", Site::getPrefixWithoutSlash() . "/airports/rem_airport.php", "", false));
 
+	$flightsSubMenu = new SiteMenu();
+	$flightsSubMenu->addItem( new MenuItem("Search flights", Site::getPrefixWithoutSlash() . "/flights/search_flight.php", "", true));
+	$flightsSubMenu->addItem( new MenuItem("Add flight", Site::getPrefixWithoutSlash() . "/flights/add_flight.php", "", false));
+	$flightsSubMenu->addItem( new MenuItem("Remove flight", Site::getPrefixWithoutSlash() . "/flights/rem_flight.php", "", false));
+	$flightsSubMenu->addItem( new MenuItem("Take-off/Land flight", Site::getPrefixWithoutSlash() . "/flights/control_flight.php", "", false));
+	
 	
     $mainMenu = new SiteMenu();
     $mainMenu->addItem(new MenuItem("Home", Site::getPrefix() . "index.php"));
 	$mainMenu->addItem(new MenuItem("Customers", Site::getPrefixWithoutSlash() . "/customer/index.php", "", false, $customerSubMenu));
 	$mainMenu->addItem(new MenuItem("Airports", Site::getPrefixWithoutSlash() . "/airports/index.php", "", false, $airportSubMenu));
 	$mainMenu->addItem(new MenuItem("Employees", Site::getPrefixWithoutSlash() . "/employees/index.php", "", false, $employeeSubMenu));
-	//$mainMenu->addItem(new MenuItem("Userguide", Site::getPrefix() . "index.php"));       
-	//$mainMenu->addItem(new MenuItem("Examples", Site::getPrefix() . "serv_test.php", "", false, $examplesSubMenu));;       
-    self::$menu = $mainMenu;
+	$mainMenu->addItem(new MenuItem("Flights", Site::getPrefixWithoutSlash() . "/flights/index.php", "", false, $flightsSubMenu));
+	self::$menu = $mainMenu;
 	
 	
   }
