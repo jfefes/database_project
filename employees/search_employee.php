@@ -21,7 +21,6 @@ class CurrentPage extends Page
 	<p style='text-align: center;'>
 		<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 			Employee id (alphanumberic): <input type="text" name="em_id"><br>
-			Last name: <input type="text" name="lName"> <br/>
 			First name: <input type="text" name="fName"> <br/>
 			Last name: <input type="text" name="lName"> <br/>
 			Job title: <input type="text" name="title"><br>
