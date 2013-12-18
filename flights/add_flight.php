@@ -34,32 +34,20 @@ class CurrentPage extends Page
 		<br/>
 		<?php
 		if (isset($_POST["flight_id"]) && isset($_POST["dest"])&& isset($_POST["curr"]) && isset($_POST["dTime"]) && isset($_POST["aTime"]) && isset($_POST["curr_gate"])&& isset($_POST["seats"])){
-			$dbHost = "141.238.32.126";
-			$dbHostPort="1521";
-			$dbServiceName = "xe";
-			$usr = "andrew";
-			$pswd = "password";
-			$dbConnStr = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)
-						(HOST=".$dbHost.")(PORT=".$dbHostPort."))
-						(CONNECT_DATA=(SERVICE_NAME=".$dbServiceName.")))";
-					
-						
-			if(!$conn = oci_connect($usr,$pswd,$dbConnStr)){
-				$err = oci_error();
-				trigger_error('Could not establish a connection to Oracle');
-			}
-			$AMPM;
+			require_once("../Includes/db_connect.inc");
+			
+			$timeStamp;
 			$flight_id = $_POST["flight_id"];
 			$dest = $_POST["dest"];
 			$curr = $_POST["curr"];
 			$dTime = $_POST["dTime"];
-				$AMPM = substr($dTime, -2);
+				$timeStamp = substr($dTime, -2);
 				$dTime = substr($dTime, 0, 15);
-				$dTime .= ".00.000000000 " .$AMPM;
+				$dTime .= ".00.000000000 " .$timeStamp;
 			$aTime = $_POST["aTime"];
-				$AMPM = substr($aTime, -2);
+				$timeStamp = substr($aTime, -2);
 				$aTime = substr($aTime, 0, 15);
-				$aTime .= ".00.000000000 " .$AMPM;
+				$aTime .= ".00.000000000 " .$timeStamp;
 			$curr_gate = $_POST["curr_gate"];
 			$dest_gate = $_POST["dest_gate"];
 			$seats = $_POST["seats"];

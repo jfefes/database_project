@@ -26,20 +26,7 @@ class CurrentPage extends Page
 		<br/>
 		<?php
 		if (isset($_POST["remove_customer"]) && !$_POST["remove_customer"]==null){
-			$dbHost = "141.238.32.126";
-			$dbHostPort="1521";
-			$dbServiceName = "xe";
-			$usr = "andrew";
-			$pswd = "password";
-			$dbConnStr = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)
-						(HOST=".$dbHost.")(PORT=".$dbHostPort."))
-						(CONNECT_DATA=(SERVICE_NAME=".$dbServiceName.")))";
-					
-						
-			if(!$conn = oci_connect($usr,$pswd,$dbConnStr)){
-				$err = oci_error();
-				trigger_error('Could not establish a connection to Oracle');
-			}
+			require_once("../Includes/db_connect.inc");
 
 			$cust_ID = $_POST["remove_customer"];
 			$cust_ID = "CUST_ID='$cust_ID'";
@@ -60,7 +47,7 @@ class CurrentPage extends Page
 				if($flight==null) $flight="(none)";
 				if($seat==null) $seat="(none)";
 				echo "Customer removed: <br/>
-				$lName, $fName: with ID cust <br/>
+				$lName, $fName: with ID $cust <br/>
 				on flight $flight in seat $seat";
 			}
 			$sql="delete from customers where $cust_ID";

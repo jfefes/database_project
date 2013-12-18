@@ -28,21 +28,7 @@ class CurrentPage extends Page
 		<br/>
 		<?php
 		if (isset($_POST["port_id"]) || isset($_POST["city"])|| isset($_POST["state"])){
-			$dbHost = "141.238.32.126";
-			$dbHostPort="1521";
-			$dbServiceName = "xe";
-			$usr = "andrew";
-			$pswd = "password";
-			$dbConnStr = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)
-						(HOST=".$dbHost.")(PORT=".$dbHostPort."))
-						(CONNECT_DATA=(SERVICE_NAME=".$dbServiceName.")))";
-					
-						
-			if(!$conn = oci_connect($usr,$pswd,$dbConnStr)){
-				$err = oci_error();
-				trigger_error('Could not establish a connection to Oracle');
-			}
-			
+			require_once("../Includes/db_connect.inc");
 			
 			$query=null;
 			if (!$_POST["port_id"]==null){
